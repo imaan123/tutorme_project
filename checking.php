@@ -1,5 +1,5 @@
 <?php
- include ( "inc/connection.inc.php" );
+ include ( "inc/connect.inc.php" );
 
 ob_start();
 session_start();
