@@ -1,5 +1,5 @@
 <?php
- include ( "inc/connection.inc.php" );
+ include ( "inc/connect.inc.php" );
 
 ob_start();
 session_start();
@@ -10,7 +10,7 @@ if (!isset($_SESSION['userlogin'])) {
 }
 else {
 	$user = $_SESSION['userlogin'];
-	$result = $con->query("SELECT * FROM user WHERE id='$user'");
+	$result = $conn->query("SELECT * FROM user WHERE id='$user'");
 		$get_user_name = $result->fetch_assoc();
 			$uname_db = $get_user_name['fullname'];
 			$utype_db = $get_user_name['type'];
@@ -18,7 +18,7 @@ else {
 
 if (isset($_REQUEST['pid'])) {
 	$pstid = mysqli_real_escape_string($con, $_REQUEST['pid']);
-	$result3 = $con->query("SELECT * FROM post WHERE id='$pstid'");
+	$result3 = $conn->query("SELECT * FROM post WHERE id='$pstid'");
 		$get_user_pid = mysqli_fetch_assoc($result3);
 		$uid_db = $get_user_pid['postby_id'];
 		$sub = $get_user_pid['subject'];
