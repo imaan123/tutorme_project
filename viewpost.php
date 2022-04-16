@@ -1,9 +1,9 @@
 <?php
-$con = new mysqli('localhost', 'root', '', 'main_db');
+$con = new mysqli('localhost', 'root', '', 'tutorme');
 
-if($con->connect_errno > 0){
-    die('Unable to connect to database [' . $con->connect_error . ']');
-}
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+	{
 
 ob_start();
 session_start();
@@ -13,7 +13,7 @@ if (!isset($_SESSION['userlogin'])) {
 }
 else {
 	$user = $_SESSION['userlogin'];
-	$result = $con->query("SELECT * FROM user WHERE id='$user'");
+	$result = $conn->query("SELECT * FROM user WHERE id='$user'");
 		$get_user_name = $result->fetch_assoc();
 			$uname_db = $get_user_name['fullname'];
 			$usertype = $get_user_name['type'];
@@ -35,11 +35,11 @@ if (isset($_POST['post_apply'])) {
 		$_SESSION['apply_post'] = "".$pstid."";
 		header("Location: login.php?pid=".$pstid."");
 	}else{
-		$resultpost = $con->query("SELECT * FROM post WHERE id='$pstid'");
+		$resultpost = $conn->query("SELECT * FROM post WHERE id='$pstid'");
 		$get_user_name = $resultpost->fetch_assoc();
 			$postby_id = $get_user_name['postby_id'];
 
-		$result = mysqli_query($con, "INSERT INTO applied_post (`post_id`,`post_by`,`applied_by`,`applied_to`) VALUES ('".$pstid."','".$postby_id."','".$user."','".$postby_id."')");
+		$result = mysqli_query($conn, "INSERT INTO applied_post (`post_id`,`post_by`,`applied_by`,`applied_to`) VALUES ('".$pstid."','".$postby_id."','".$user."','".$postby_id."')");
 
 		if($result){
 			header("Location: viewpost.php?pid=".$pstid."");
