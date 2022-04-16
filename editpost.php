@@ -39,13 +39,13 @@ if (isset($_REQUEST['pid'])) {
 
 if (isset($_POST['deletepost'])) {
 		$pstid = mysqli_real_escape_string($con, $_REQUEST['pid']);
-		$result3 = $con->query("SELECT * FROM post WHERE id='$pstid'");
+		$result3 = $conn->query("SELECT * FROM post WHERE id='$pstid'");
 			$get_user_pid = mysqli_fetch_assoc($result3);
 			$uid_db = $get_user_pid['postby_id'];
 		if($user != $uid_db){
 			header('location: index.php');
 		}else{
-			$result = $con->query("DELETE FROM post WHERE id='$pstid'");
+			$result = $conn->query("DELETE FROM post WHERE id='$pstid'");
 			header('location: profile.php?uid='.$user.'');
 		}
 	}
