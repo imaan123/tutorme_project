@@ -1,5 +1,5 @@
 <?php
-include ( "inc/connection.inc.php" );
+include ( "inc/connect.inc.php" );
 
 ob_start();
 session_start();
@@ -8,7 +8,7 @@ if (!isset($_SESSION['userlogin'])) {
 }
 else {
 	$user = $_SESSION['userlogin'];
-	$result = $con->query("UPDATE user SET last_logout=now(), online='no' WHERE id='$user'");
+	$result = $conn->query("UPDATE user SET last_logout=now(), online='no' WHERE id='$user'");
 }
 //destroy session
 session_destroy();
