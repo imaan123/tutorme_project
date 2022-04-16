@@ -8,7 +8,7 @@ if (!isset($_SESSION['userlogin'])) {
 }
 else {
 	$user = $_SESSION['userlogin'];
-	$result = $con->query("SELECT * FROM user WHERE id='$user'");
+	$result = $conn->query("SELECT * FROM user WHERE id='$user'");
 		$get_user_name = $result->fetch_assoc();
 			$uname_db = $get_user_name['fullname'];
 			$utype_db = $get_user_name['type'];
