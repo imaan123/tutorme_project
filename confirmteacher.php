@@ -1,5 +1,5 @@
 <?php
- include ( "inc/connection.inc.php" );
+ include ( "inc/connect.inc.php" );
 
 ob_start();
 session_start();
@@ -8,17 +8,17 @@ if (!isset($_SESSION['user_login'])) {
 }
 else {
 	$user = $_SESSION['user_login'];
-	$result = $con->query("SELECT * FROM user WHERE id='$user'");
+	$result = $conn->query("SELECT * FROM user WHERE id='$user'");
 		$get_user_name = $result->fetch_assoc();
 			$uname_db = $get_user_name['fullname'];
 			$utype_db = $get_user_name['type'];
 }
 
 if (isset($_REQUEST['confirm'])) {
-		$tid = mysqli_real_escape_string($con, $_REQUEST['confirm']);
-		$result = mysqli_query($con, "INSERT INTO applied_post (applied_by,applied_to) VALUES ('$user','$tid')");
+		$tid = mysqli_real_escape_string($conn, $_REQUEST['confirm']);
+		$result = mysqli_query($conn, "INSERT INTO applied_post (applied_by,applied_to) VALUES ('$user','$tid')");
 
-		$result = $con->query("SELECT * FROM user WHERE id='$tid'");
+		$result = $conn->query("SELECT * FROM user WHERE id='$tid'");
 		$get_user_name = $result->fetch_assoc();
 			$uname = $get_user_name['fullname'];
 			$utype = $get_user_name['type'];
