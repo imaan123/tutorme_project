@@ -1,6 +1,6 @@
 <?php
 
-$con = new mysqli("localhost", "root", "", "tutorme");
+$conn = new mysqli("localhost", "root", "", "tutorme");
 
 if($conn->connect_error)
 {
