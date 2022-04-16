@@ -9,17 +9,17 @@ if (!isset($_SESSION['userlogin'])) {
 }
 else {
 	$user = $_SESSION['userlogin'];
-	$result = $con->query("SELECT * FROM user WHERE id='$user'");
+	$result = $conn->query("SELECT * FROM user WHERE id='$user'");
 		$get_user_name = $result->fetch_assoc();
 			$uname_db = $get_user_name['fullname'];
 			$utype_db = $get_user_name['type'];
 }
 
 if($utype_db == "student"){
-	$up = $con->query("UPDATE applied_post SET student_ck='yes'");
+	$up = $conn->query("UPDATE applied_post SET student_ck='yes'");
 }
 if($utype_db == "teacher"){
-	$up = $con->query("UPDATE applied_post SET tutor_ck='yes'");
+	$up = $conn->query("UPDATE applied_post SET tutor_ck='yes'");
 }
 
 //time ago convert
