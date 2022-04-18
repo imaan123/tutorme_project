@@ -1,6 +1,6 @@
 
 <?php
- include ( "inc/connection.inc.php" );
+ include ( "inc/connect.inc.php" );
 
 ob_start();
 session_start();
@@ -57,7 +57,7 @@ if (isset($_POST['updatetutioninfo'])) {
 					$mediumlist = implode(',', $_POST['medium_list']);
 
 					//not working!!!!!!!!!!!!
-					//$result3 = mysqli_query($con, "UPDATE tutor SET prefer_sub='$sublist',class='$classlist',medium='$mediumlist',salary='$f_sal',prefer_location='$f_loca', WHERE t_id='$user'");
+					//$result3 = mysqli_query($conn, "UPDATE tutor SET prefer_sub='$sublist',class='$classlist',medium='$mediumlist',salary='$f_sal',prefer_location='$f_loca', WHERE t_id='$user'");
 
 					if($result4 = $conn->query("INSERT INTO tutor (t_id,prefer_sub,class,medium,inst_name,salary,prefer_location) VALUES ('$user','$sublist','$classlist','$mediumlist','$uinst_db','$_POST[sal_range]','$_POST[location]')")){
 						$result = $conn->query("DELETE FROM tutor WHERE id='$id_db'");
