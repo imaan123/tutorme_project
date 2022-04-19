@@ -3,12 +3,12 @@
 
 ob_start();
 session_start();
-if (!isset($_SESSION['user_login'])) {
+if (!isset($_SESSION['userlogin'])) {
 	$user = "";
 	$utype_db = "";
 }
 else {
-	$user = $_SESSION['user_login'];
+	$user = $_SESSION['userlogin'];
 	$result = $conn->query("SELECT * FROM user WHERE id='$user'");
 		$get_user_name = $result->fetch_assoc();
 			$uname_db = $get_user_name['fullname'];
