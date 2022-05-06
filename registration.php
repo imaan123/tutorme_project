@@ -20,8 +20,12 @@ $u_fname = $_POST['first_name'];
 $u_email = $_POST['email'];
 $u_mobile = $_POST['mobile'];
 $u_pass = $_POST['password'];
-$u_ac = $_POST['account'];
-$u_gender = $_POST['gender'];
+
+if(!empty($_POST['account'])) 
+    $u_ac = $_POST['account'];
+
+if(!empty($_POST['gender']))
+    $u_gender = $_POST['gender'];
 //triming name
 $_POST['first_name'] = trim($_POST['first_name']);
 	try {
@@ -44,7 +48,6 @@ $_POST['first_name'] = trim($_POST['first_name']);
 			throw new Exception('Password can not be empty');
 			
 		}
-		
 		// Check if email already exists
 		
 		$check = 0;
