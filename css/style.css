@@ -1038,3 +1038,18 @@ ul.link li a::after {
      margin-top: 70px;
 }
 
+.signupform_content h2 {
+     margin: 0px 0 0 0;
+     padding: 0px 0px 20px 0px;
+     font-size: 40px;
+     color: #169E8F;
+     font-weight: bold;
+     text-align: center;
+   }
+
+   .signup_error_msg {
+     font-weight: bold;
+     padding: 0px 10px 15px 10px;
+     text-align: center;
+     font-size: 16px;
+   }
