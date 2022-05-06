@@ -1,11 +1,6 @@
 <?php
+include("inc/connect.inc.php");
 
-$conn = new mysqli("localhost","root","","tutorme");
-
-if($conn->connect_error)
-{
-    die("Connection failed",$conn->connect_error);
-}
 ob_start();
 session_start();
 if (!isset($_SESSION['userlogin'])) {
@@ -79,13 +74,12 @@ $_POST['first_name'] = trim($_POST['first_name']);
 						//throw new Exception('Email is not valid!');
 						//success message
 
-						$sql = "INSERT INTO `user` (`fullname`,`gender`,`email`,`phone`,`pass`,`type`,`confirmcode`) VALUES ('".$u_fname."','".$u_gender."','".$u_email."','".$u_mobile."','".$u_pass."','".$u_ac."','".$confirmCode."')";
-
+						$sql = "INSERT INTO `user` (fullname,gender,email,phone,pass,type,confirmcode) VALUES ('".$u_fname."','".$u_gender."','".$u_email."','".$u_mobile."','".$u_pass."','".$u_ac."','".$confirmCode."')";
 						if($conn->query($sql)){
 							//success message
 						$success_message = '
 						<div class="signupform_content"><h2><font face="bookman">Registration successfull!</font></h2>
-						<div class="signupform_text" style="font-size: 18px; text-align: center;">
+						<div class="signupform_content" style="font-size: 18px; text-align: center;">
 						<font face="bookman">
 							Email: '.$u_email.'<br>
 							Activation code sent to your email. <br>
@@ -114,7 +108,7 @@ $_POST['first_name'] = trim($_POST['first_name']);
 	catch(Exception $e) {
 		$error_message = $e->getMessage();
 	}
-}
+}else{echo 'query not working';}
 
 ?>
 <!DOCTYPE html>
@@ -236,16 +230,16 @@ $_POST['first_name'] = trim($_POST['first_name']);
                         <div class="row row-space">
                             <div >
 							<label class="label"><b>Account Type</b></label>
-                                <div class="input-group">
+                                <div class="input-gold">
                                     
                 
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45" >teacher
-                                            <input type="radio"   name="account">
+                                            <input type="radio"   name="account" value="teacher">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container" >student/parent
-                                            <input type="radio" name="account">
+                                            <input type="radio" name="account" value="student">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -258,25 +252,24 @@ $_POST['first_name'] = trim($_POST['first_name']);
                         <br>
                         <div class="row row-space">
                             <div >
-                                <div class="input-group">
-                                    <label class="label">full name</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                <div class="input-gold">
+                                    <label class="labelx">full name</label>
+                                    <input class="input-style-gold" type="text" name="first_name">
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
-
                             <div >
-							<label class="label"><b>Gender</b></label>
-                                <div class="input-group">
+							<label class="labelx"><b>Gender</b></label>
+                                <div class="input-gold">
                                     
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Male
-                                            <input type="radio"  name="gender">
+                                            <input type="radio"  name="gender" value="male">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Female
-                                            <input type="radio" name="gender">
+                                            <input type="radio" name="gender" value="female">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -285,35 +278,35 @@ $_POST['first_name'] = trim($_POST['first_name']);
                         </div>
                         <div class="row row-space">
                             <div >
-                                <div class="input-group">
-                                    <label class="label">Email</label>
-                                    <input class="input--style-4" type="email" name="email">
+                                <div class="input-gold">
+                                    <label class="labelx">Email</label>
+                                    <input class="input-style-gold" type="email" name="email">
                                 </div>
                             </div>
                             <div >
-                                <div class="input-group">
-                                    <label class="label">Phone Number</label>
-                                    <input class="input--style-4" type="text" name="phone">
+                                <div class="input-gold">
+                                    <label class="labelx">Phone Number</label>
+                                    <input class="input-style-gold" type="text" name="mobile">
                                 </div>
                             </div>
                             <div >
-                                <div class="input-group">
-                                    <label class="label">Password</label>
-                                    <input class="input--style-4" type="password" name="password">
+                                <div class="input-gold">
+                                    <label class="labelx">Password</label>
+                                    <input class="input-style-gold" type="password" name="password">
                                 </div>
                             </div>
                             <div >
-                                <div class="input-group">
-                                    <label class="label">Confirm Password</label>
-                                    <input class="input--style-4" type="password" name="cpassword">
+                                <div class="input-gold">
+                                    <label class="labelx">Confirm Password</label>
+                                    <input class="input-style-gold" type="password" name="cpassword">
                                 </div>
                             </div>
                         </div>
                         
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                            <button class="btn btn--radius-2 btn--blue" type="submit" name="signup">Submit</button>
                         </div>
-                    </form>'
+                    </form>';
 					?>
                 </div>
             </div>
