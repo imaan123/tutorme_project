@@ -108,7 +108,7 @@ $_POST['first_name'] = trim($_POST['first_name']);
 	catch(Exception $e) {
 		$error_message = $e->getMessage();
 	}
-}else{echo 'query not working';}
+}
 
 ?>
 <!DOCTYPE html>
