@@ -11,7 +11,7 @@ if($conn->connect_errno > 0){
 <?php
 ob_start();
 session_start();
-if (!isset($_SESSION['user_login'])) {
+if (!isset($_SESSION['userlogin'])) {
 	$utype_db = "";
 	$user = "";
 }
@@ -20,8 +20,8 @@ else {
 }
 $emails = "";
 $passs = "";
-if (isset($_POST['login'])) {
-	if (isset($_POST['email']) && isset($_POST['password'])) {
+if (!empty($_POST['login'])) {
+	if (!empty($_POST['email']) && isset($_POST['password'])) {
 		//$user_login = mysql_real_escape_string($_POST['email']);
 		$user_login = $_POST['email'];
 		$user_login = mb_convert_case($user_login, MB_CASE_LOWER, "UTF-8");
@@ -33,9 +33,9 @@ if (isset($_POST['login'])) {
 		$get_user_email = $result->fetch_assoc();
 			$get_user_uname_db = $get_user_email['id'];
 			$get_user_type_db = $get_user_email['type'];
-		if (mysqli_num_rows($result)>0) {
-			$_SESSION['user_login'] = $get_user_uname_db;
-			setcookie('user_login', $user_login, time() + (365 * 24 * 60 * 60), "/");
+		if ($num>0) {
+			$_SESSION['userlogin'] = $get_user_uname_db;
+			setcookie('userlogin', $user_login, time() + (365 * 24 * 60 * 60), "/");
 			$online = 'yes';
 			$result = $conn->query("UPDATE user SET online='$online' WHERE id='$get_user_uname_db'");
 			if($_SESSION['u_post'] == "post")
@@ -106,8 +106,6 @@ if(isset($_POST['activate'])){
 }
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -132,6 +130,12 @@ if(isset($_POST['activate'])){
       <link rel="icon" href="images/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+	  <!-- Vendor CSS-->
+	  <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+     <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main.css" rel="stylesheet" media="all">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -141,11 +145,6 @@ if(isset($_POST['activate'])){
    </head>
    <!-- body -->
    <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
-      </div>
-      <!-- end loader -->
       <!-- header -->
       <header>
          <!-- header inner -->
@@ -206,64 +205,65 @@ if(isset($_POST['activate'])){
       </header>
 
 
+	<div  class="page-wrapper p-t-130 p-b-100 font-poppins" style="background:url('images/back1.jpg');">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+				<?php
+				echo '<div class="signup_error_msg">';
 
-			<div style="float: right;" >
-				<table>
-					<tr>
-						<?php
-							if($user != ""){
-								echo '<td>
-							<a class="active navlink" href="profile.php?uid='.$user.'">'.$uname_db.'</a>
-						</td>
-						<td>
-							<a class="navlink" href="logout.php">Logout</a>
-						</td>';
-							}
-						?>
+						if (isset($error_message)) {echo $error_message;}
 
-					</tr>
-				</table>
-			</div>
 
-	<div class="nbody" style="margin: 30px 430px; overflow: hidden; ">
-		<div class="nfeedleft" style="background-color: unset;">
-			<div>
-		<div class="testbox" style="height: 410px;">
-      <br>
-  <h1>LOGIN</h1>
+				echo'</div>';
+				if(isset($success_message)) {echo $success_message;}
+				else echo'
+                    <h2 class="title" style="text-align:center;"><b>LOGIN</b></h2>
+                    <form method="POST">
+                        <hr>
+                        <br>
 
-  <form action="" method="post">
-      <hr>
-  <input type="text" name="email" id="name" placeholder="Email" required/><br>
-  <input type="password" name="password" id="name" placeholder="Password" required/>
-  <div>
-  <div style="float: right; width: 35%; margin-top: 20px; padding-right: 80px;">
-  	<input type="submit" class="sub_button" name="login" id="name" value="LOGIN"/><br><br>
-  </div>
-  <div style="width: 50%; float: left; padding: 25px 0 6px 65px">
-  	<p>Forgot your password?<a href="#" style="font-weight: bold;"> Click here</a>.</p>
-  <p>Not registered yet?<a href="registration.php" style="font-weight: bold;"> Register here</a>.</p>
-  </div>
-  </div>
-  </form>
-</div>
-	</div>
-		</div>
-		<div class="nfeedright">
 
-		</div>
-	</div>
-  	</div>
+                        <div class="row row-space">
+                            <div >
+                                <div class="input-gold">
+                                    <label class="labelx">Email</label>
+                                    <input class="input-style-gold" type="email" name="email">
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div >
+                                <div class="input-gold">
+                                    <label class="labelx">Password</label>
+                                    <input class="input-style-gold" type="password" name="password">
+                                </div>
+                            </div>
+
+                        </div>
 
 
 
- <!-- homemenu tab script -->
- <script src="js/jquery.min.js"></script>
- <script src="js/popper.min.js"></script>
- <script src="js/bootstrap.bundle.min.js"></script>
- <script src="js/jquery-3.0.0.min.js"></script>
- <!-- sidebar -->
- <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
- <script src="js/custom.js"></script>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit" name="login" value="login" style="font-weight: bold;">LOGIN</button>
+                        </div>
+
+                        <br>
+
+                    </form>';
+                    echo'<div style="float: left; padding: 10px 0 6px 4px">
+                      
+                    <p>Not registered yet?<a href="registration.php" style="font-weight: bold;">Register here.</a></p>
+                    </div>';
+					?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </body>
 </html>
