@@ -69,7 +69,7 @@ $time = new timeago();
                      <div class="full">
                         <div class="center-desk">
                            <div style="padding-top:2px">
-                              <a href="index.html"><img src="images/logo1.png" alt="#" style="height:50px;width:150px"/></a>
+                              <a href="#"><img src="images/logo1.png" alt="#" style="height:50px;width:150px"/></a>
                            </div>
                         </div>
                      </div>
@@ -82,7 +82,7 @@ $time = new timeago();
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item active">
-                                 <a class="nav-link" href="logout.php"> Home </a>
+                                 <a class="nav-link" href="#"> Home </a>
                               </li>
                               <li class="nav-item">
                               <?php
@@ -94,7 +94,7 @@ $time = new timeago();
                               </li>
                               <li class="nav-item">';
                               if($user != "")
-                              echo'<a class="nav-link" href="Notification.php">Search tutor</a>';
+                              echo'<a class="nav-link" href="search.php">Search tutor</a>';
                               else
                                  echo'<a class="nav-link" href="login.php">Search tutor</a>';
                               echo'
