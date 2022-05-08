@@ -3,12 +3,12 @@
 
 ob_start();
 session_start();
-if (!isset($_SESSION['user_login'])) {
+if (!isset($_SESSION['userlogin'])) {
 	$user = "";
 	$utype_db = "";
 }
 else {
-	$user = $_SESSION['user_login'];
+	$user = $_SESSION['userlogin'];
 	$result = $conn->query("SELECT * FROM user WHERE id='$user'");
 		$get_user_name = $result->fetch_assoc();
 			$uname_db = $get_user_name['fullname'];
@@ -139,19 +139,10 @@ $time = new timeago();
 								$resultnoti_cnt = $resultnoti->num_rows;
 								if($resultnoti_cnt == 0){
 									$resultnoti_cnt = "";
-								}else{
+								}else
 									$resultnoti_cnt = '('.$resultnoti_cnt.')';
 								}
-								echo '<td>
-							<a class="navlink" href="notification.php">Notification'.$resultnoti_cnt.'</a>
-						</td>
-								<td>
-							<a class="navlink" href="profile.php?uid='.$user.'">'.$uname_db.'</a>
-						</td>
-						<td>
-							<a class="navlink" href="logout.php">Logout</a>
-						</td>';
-							}
+								
 						?>
 
 					</tr>
