@@ -970,6 +970,27 @@ ul.btn li:last-child {
   font-size: 25px;
 }
 
+.p_body{
+     margin: 10px 0 0 0;
+     font-size: 15px;
+ }
+
+.p_body p{
+     font-weight: bold;
+}
+  
+.p_bodyn {
+     font-weight: bold;
+     margin: 20px;
+     text-align: center;
+     padding: 60px 20px;
+     font-size: 20px;
+}
+
+.p_body span{
+     font-weight: 200;
+ }
+
 input[type=text],input[type=password],input[type=email]{
   width: 450px;
   height: 45px;
