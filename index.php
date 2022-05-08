@@ -86,28 +86,33 @@ $time = new timeago();
                               </li>
                               <li class="nav-item">
                               <?php
-                              if($usertype = "publicuser")
-                                 echo'<a class="nav-link" href="login.php">Posts</a>';
-                              else 
-                                 echo'<a class="nav-link" href="viewpost.php">Posts</a>';
-                              ?>
-                              </li>
-                              <li class="nav-item">
-                              <?php
-                              if($usertype = "publicuser")
-                                 echo'<a class="nav-link" href="login.php">Search Tutor</a>';
+                              if($user != "")
+                              echo'<a class="nav-link" href="postform.php">post</a>';
                               else
-                                 echo'<a class="nav-link" href="search.php">Search Tutor</a>';
+                                 echo'<a class="nav-link" href="login.php">post</a>';
+                              echo'
+                              </li>
+                              <li class="nav-item">';
+                              if($user != "")
+                              echo'<a class="nav-link" href="Notification.php">Search tutor</a>';
+                              else
+                                 echo'<a class="nav-link" href="login.php">Search tutor</a>';
                               echo'
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="#contact">Contact</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="viewpost.php">viewpost</a>
-                              </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                              </li>';
+                              if($user != "")
+                              echo'<a class="nav-link" href="newsfeed.php">newsfeed</a>';
+                              else
+                                 echo'<a class="nav-link" href="login.php">newsfeed</a>';
+                              echo'
+                              <li class="nav-item">';
+                              if($user != "")
+                                 echo'<a class="nav-link" href="Notification.php">Notfication</a>';
+                              else
+                                 echo'<a class="nav-link" href="login.php">Notification</a>';
+                              echo'
                               </li>';
                               if($user != "")
                               {
@@ -115,7 +120,7 @@ $time = new timeago();
                                  $get_user_welcome = $query->fetch_assoc();
                                  echo'
                                  <li class="nav-item">
-                                    <a class="nav-link" href="profile.php?uid='.$user.'">Hello '.$uname_db.'!</a>
+                                    <a class="nav-link" href="aboutme.php?uid='.$user.'">Hello '.$uname_db.'!</a>
                                  </li>
                                  <li class=" d_none get_btn">
                                  <a  href="logout.php">Logout</a>
