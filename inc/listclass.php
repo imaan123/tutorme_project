@@ -1,7 +1,7 @@
 <?php
 //subject list
 
-class checkboxlist{
+class checkboxlist
 	public function sublist()
 	{
 		echo'
