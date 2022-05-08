@@ -88,16 +88,16 @@ if(isset($_POST['edit']))
    <!-- body -->
    <body class="main-layout">
       <!-- header -->
-      <header>
-		  <!-- header inner -->
-		  <div class="header">
+       <header>
+         <!-- header inner -->
+         <div class="header">
             <div class="container-fluid">
                <div class="row">
                   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                      <div class="full">
                         <div class="center-desk">
                            <div style="padding-top:2px">
-                              <a href="index.html"><img src="images/logo1.png" alt="#" style="height:50px;width:150px"/></a>
+                              <a href="#"><img src="images/logo1.png" alt="#" style="height:50px;width:150px"/></a>
                            </div>
                         </div>
                      </div>
@@ -110,41 +110,38 @@ if(isset($_POST['edit']))
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item active">
-                                 <a class="nav-link" href="aboutme.php"> Home </a>
+                                 <a class="nav-link" href="#"> Home </a>
                               </li>
-                              
+                              <li class="nav-item">
                               <?php
-                              if($usertype = "publicuser")
-                                 echo'
-								 <li class="nav-item">
-								 <a class="nav-link" href="login.php">Posts</a>
-								 </li>';
-                              else 
-                                 echo'
-								 <li class="nav-item">
-								 <a class="nav-link" href="viewpost.php">Posts</a></li>';
-							 
-                              ?>
-                              <?php
-                              if($usertype = "publicuser")
-                                 echo'</li>
-								 <li class="nav-item">
-								 <a class="nav-link" href="login.php">Search Tutor</a>
-								 </li>';
+                              if($user != "")
+                              echo'<a class="nav-link" href="postform.php">post</a>';
                               else
-                                 echo'</li>
-								 <li class="nav-item">
-								 <a class="nav-link" href="search.php">Search Tutor</a>
-								 </li>';
-                              ?>
-                              
+                                 echo'<a class="nav-link" href="login.php">post</a>';
+                              echo'
+                              </li>
+                              <li class="nav-item">';
+                              if($user != "")
+                              echo'<a class="nav-link" href="search.php">Search tutor</a>';
+                              else
+                                 echo'<a class="nav-link" href="login.php">Search tutor</a>';
+                              echo'
+                              </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="#contact">Contact</a>
-                              </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              </li>
-                              <?php
+                              </li>';
+                              if($user != "")
+                              echo'<a class="nav-link" href="newsfeed.php">newsfeed</a>';
+                              else
+                                 echo'<a class="nav-link" href="login.php">newsfeed</a>';
+                              echo'
+                              <li class="nav-item">';
+                              if($user != "")
+                                 echo'<a class="nav-link" href="Notification.php">Notfication</a>';
+                              else
+                                 echo'<a class="nav-link" href="login.php">Notification</a>';
+                              echo'
+                              </li>';
                               if($user != "")
                               {
                                  $query = $conn->query("SELECT * FROM `user` WHERE id= '.$user'");
@@ -160,7 +157,8 @@ if(isset($_POST['edit']))
                                  echo'
                               <li class=" d_none get_btn">
                                  <a  href="login.php">Login</a>
-                              </li>';}?>
+                              </li>';}
+                              ?>
                            </ul>
                         </div>
                      </nav>
