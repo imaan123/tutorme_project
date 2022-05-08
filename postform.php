@@ -155,7 +155,7 @@ $list_check = new checkboxlist();
    <!-- body -->
    <body class="main-layout">
       <!-- header -->
-      <header>
+     <header>
          <!-- header inner -->
          <div class="header">
             <div class="container-fluid">
@@ -164,7 +164,7 @@ $list_check = new checkboxlist();
                      <div class="full">
                         <div class="center-desk">
                            <div style="padding-top:2px">
-                              <a href="index.html"><img src="images/logo1.png" alt="#" style="height:50px;width:150px"/></a>
+                              <a href="#"><img src="images/logo1.png" alt="#" style="height:50px;width:150px"/></a>
                            </div>
                         </div>
                      </div>
@@ -177,39 +177,55 @@ $list_check = new checkboxlist();
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item active">
-                                 <a class="nav-link" href="schedule.php"> Home </a>
+                                 <a class="nav-link" href="#"> Home </a>
                               </li>
                               <li class="nav-item">
                               <?php
                               if($user != "")
-                                echo'<a class="nav-link" href="postform.php">Posts</a>';
+                              echo'<a class="nav-link" href="postform.php">post</a>';
                               else
-                                echo'<a class="nav-link" href="login.php">Posts</a>';
-                              ?>
+                                 echo'<a class="nav-link" href="login.php">post</a>';
+                              echo'
                               </li>
-                              <li class="nav-item">
-                              <?php
-                              if($usertype = "publicuser")
-                                 echo'<a class="nav-link" href="login.php">Search Tutor</a>';
+                              <li class="nav-item">';
+                              if($user != "")
+                              echo'<a class="nav-link" href="search.php">Search tutor</a>';
                               else
-                                 echo'<a class="nav-link" href="search.php">Search Tutor</a>';
-                              ?>
+                                 echo'<a class="nav-link" href="login.php">Search tutor</a>';
+                              echo'
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="#contact">Contact</a>
-                              </li>
-
-
-
-                              <li class="nav-item">
-                                 <a class="nav-link" href="newsfeed.php">Newsfeed</a>
-                              </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              </li>
+                              </li>';
+                              if($user != "")
+                              echo'<a class="nav-link" href="newsfeed.php">newsfeed</a>';
+                              else
+                                 echo'<a class="nav-link" href="login.php">newsfeed</a>';
+                              echo'
+                              <li class="nav-item">';
+                              if($user != "")
+                                 echo'<a class="nav-link" href="Notification.php">Notfication</a>';
+                              else
+                                 echo'<a class="nav-link" href="login.php">Notification</a>';
+                              echo'
+                              </li>';
+                              if($user != "")
+                              {
+                                 $query = $conn->query("SELECT * FROM `user` WHERE id= '.$user'");
+                                 $get_user_welcome = $query->fetch_assoc();
+                                 echo'
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="aboutme.php?uid='.$user.'">Hello '.$uname_db.'!</a>
+                                 </li>
+                                 <li class=" d_none get_btn">
+                                 <a  href="logout.php">Logout</a>
+                                 </li>';}
+                              else{
+                                 echo'
                               <li class=" d_none get_btn">
                                  <a  href="login.php">Login</a>
-                              </li>
+                              </li>';}
+                              ?>
                            </ul>
                         </div>
                      </nav>
