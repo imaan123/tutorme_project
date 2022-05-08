@@ -178,7 +178,7 @@ if (isset($_POST['post_apply'])) {
 						$deadline = $row['deadline'];
 					
 
-						$query1 = $con->query("SELECT * FROM user WHERE id='$postby_id'");
+						$query1 = $conn->query("SELECT * FROM user WHERE id='$postby_id'");
 						$user_fname = $query1->fetch_assoc();
 						$uname_db = $user_fname['fullname'];
 						$pro_pic_db = $user_fname['user_pic'];
