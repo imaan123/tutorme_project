@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli('localhost', 'root', '', 'main_db');
+$conn = new mysqli('localhost', 'root', '', 'tutorme');
 
 if($conn->connect_errno > 0){
     die('Unable to connect to database [' . $conn->connect_error . ']');
@@ -18,10 +18,9 @@ if (!isset($_SESSION['userlogin'])) {
 else {
 	header("location: index.php");
 }
-$emails = "";
-$passs = "";
-if (!empty($_POST['login'])) {
-	if (!empty($_POST['email']) && isset($_POST['password'])) {
+$emails = " ";
+$passs = " ";
+if(isset($_POST['login'])){
 		//$user_login = mysql_real_escape_string($_POST['email']);
 		$user_login = $_POST['email'];
 		$user_login = mb_convert_case($user_login, MB_CASE_LOWER, "UTF-8");
@@ -65,45 +64,10 @@ if (!empty($_POST['login'])) {
 		}
 	}
 
-}
+
 $acemails = "";
 $acccode = "";
-if(isset($_POST['activate'])){
-	if(isset($_POST['actcode'])){
-		$user_login = mysql_real_escape_string($_POST['acemail']);
-		$user_login = mb_convert_case($user_login, MB_CASE_LOWER, "UTF-8");
-		$user_acccode = mysql_real_escape_string($_POST['actcode']);
-		$result2 = mysql_query("SELECT * FROM user WHERE (email='$user_login') AND confirmCode='$user_acccode'");
-		$num3 = mysql_num_rows($result2);
-		echo $user_login;
-		if ($num3>0) {
-			$get_user_email = mysql_fetch_assoc($result2);
-			$get_user_uname_db = $get_user_email['id'];
-			$_SESSION['user_login'] = $get_user_uname_db;
-			setcookie('user_login', $user_login, time() + (365 * 24 * 60 * 60), "/");
-			mysql_query("UPDATE user SET confirmCode='0', activation='yes' WHERE email='$user_login'");
-			if (isset($_REQUEST['ono'])) {
-				$ono = mysql_real_escape_string($_REQUEST['ono']);
-				header("location: orderform.php?poid=".$ono."");
-			}else {
-				header('location: index.php');
-			}
-			exit();
-		}else {
-			$emails = $user_login;
-			$error_message = '<br><br>
-				<div class="maincontent_text" style="text-align: center; font-size: 18px;">
-				<font face="bookman">Code not matched!<br>
-				</font></div>';
-		}
-	}else {
-		$error_message = '<br><br>
-				<div class="maincontent_text" style="text-align: center; font-size: 18px;">
-				<font face="bookman">Activation code not matched!<br>
-				</font></div>';
-	}
 
-}
 
 ?>
 <!DOCTYPE html>
@@ -184,17 +148,34 @@ if(isset($_POST['activate'])){
                                  echo'<a class="nav-link" href="login.php">Search Tutor</a>';
                               else
                                  echo'<a class="nav-link" href="search.php">Search Tutor</a>';
-                              ?>
+                              
+                                 echo'
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="#contact">Contact</a>
                               </li>
                               <li class="nav-item d_none">
                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              </li>
+                              </li>';
+                              if($user != "")
+                              {
+                                 $query = $conn->query("SELECT * FROM `user` WHERE id= '.$user'");
+                                 $get_user_welcome = $query->fetch_assoc();
+                                 $uname = $get_user_welcome['fullname'];
+
+                                 echo'
+                                 <li class="nav-item">
+                                 <a  href="profile.php?uid='.$user.'">Hello '.$uname.'</a>
+                                 </li>
+                                 <li class=" d_none get_btn">
+                                 <a  href="login.php">Logout</a>
+                                 </li>';}
+                              else{
+                                 echo'
                               <li class=" d_none get_btn">
                                  <a  href="login.php">Login</a>
-                              </li>
+                              </li>';}
+                              ?>
                            </ul>
                         </div>
                      </nav>
@@ -247,7 +228,7 @@ if(isset($_POST['activate'])){
 
 
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit" name="login" value="login" style="font-weight: bold;">LOGIN</button>
+                            <button class="btn btn--radius-2 btn--blue" type="submit" name="login" value="login">LOGIN</button>
                         </div>
 
                         <br>
