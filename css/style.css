@@ -863,6 +863,71 @@ ul.btn li:last-child {
   padding-bottom: 50px;
 }
 
+.nfbody{
+  background-color: #cecece;
+  margin: 10px;
+  padding: 10px;
+}
+
+.p_head{
+
+}
+.p_head img{
+  float: left;
+}
+
+.p_nmdate{
+  overflow: hidden;
+  padding: 0 10px;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.p_nmdate h4{
+  color: #087E0D;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.p_nmdate h5{
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.p_body{
+  margin: 10px 0 0 0;
+  font-size: 15px;
+}
+
+.p_body p{
+  font-weight: bold;
+}
+
+.p_bodyn {
+  font-weight: bold;
+  margin: 20px;
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 20px;
+}
+
+.p_body span{
+  font-weight: 200;
+}
+
+.itemrow{
+  margin: 0 auto; width: 100%;
+  padding-bottom: 9px;
+  overflow: hidden;
+}
+
+.itemrowdiv1{
+  width: 19%; float: left;font-weight: bold;
+}
+
+.itemrowdiv2{
+  width: 80%; float: left; font-style: italic;
+}
+
 input[type=text],input[type=password],input[type=email]{
   width: 450px;
   height: 45px;
