@@ -11,8 +11,9 @@ else {
 	$user = $_SESSION['userlogin'];
 	$result = $conn->query("SELECT * FROM user WHERE id='$user'");
 		$get_user_name = $result->fetch_assoc();
+      if($get_user_name!= NULL){
 			$uname_db = $get_user_name['fullname'];
-			$usertype = $get_user_name['type'];
+			$usertype = $get_user_name['type'];}
 }
 
 //time ago convert
@@ -81,7 +82,7 @@ $time = new timeago();
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item active">
-                                 <a class="nav-link" href="schedule.php"> Home </a>
+                                 <a class="nav-link" href="logout.php"> Home </a>
                               </li>
                               <li class="nav-item">
                               <?php
@@ -97,17 +98,34 @@ $time = new timeago();
                                  echo'<a class="nav-link" href="login.php">Search Tutor</a>';
                               else
                                  echo'<a class="nav-link" href="search.php">Search Tutor</a>';
-                              ?>
+                              echo'
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="#contact">Contact</a>
                               </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="viewpost.php">viewpost</a>
+                              </li>
                               <li class="nav-item d_none">
                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              </li>
+                              </li>';
+                              if($user != "")
+                              {
+                                 $query = $conn->query("SELECT * FROM `user` WHERE id= '.$user'");
+                                 $get_user_welcome = $query->fetch_assoc();
+                                 echo'
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="profile.php?uid='.$user.'">Hello '.$uname_db.'!</a>
+                                 </li>
+                                 <li class=" d_none get_btn">
+                                 <a  href="logout.php">Logout</a>
+                                 </li>';}
+                              else{
+                                 echo'
                               <li class=" d_none get_btn">
                                  <a  href="login.php">Login</a>
-                              </li>
+                              </li>';}
+                              ?>
                            </ul>
                         </div>
                      </nav>
