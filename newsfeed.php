@@ -185,8 +185,6 @@ $time = new timeago();
 						$p_university = $row['p_university'];
 						$post_time = $row['post_time'];
 						$deadline = $row['deadline'];
-						$medium = $row['medium'];
-						$medium = str_replace(",", ", ", $medium);
 
 						$query1 = $conn->query("SELECT * FROM user WHERE id='$postby_id'");
 						$user_fname = $query1->fetch_assoc();
@@ -260,14 +258,6 @@ $time = new timeago();
 					  			</div>
 					  			<div class="itemrowdiv2">
 					  				<span>'.$class.'</span>
-					  			</div>
-					  		</div>
-							<div class="itemrow">
-					  			<div class="itemrowdiv1">
-					  				<label>Medium: </label>
-					  			</div>
-					  			<div class="itemrowdiv2">
-					  				<span>'.$medium.'</span>
 					  			</div>
 					  		</div>
 							<div class="itemrow">
