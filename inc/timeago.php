@@ -4,7 +4,7 @@ class timeago
   
     function time_ago($timestamp){
     
-    date_default_timezone_set("Asia/India");         
+    date_default_timezone_set("Asia/Kolkata");         
     $time_ago        = strtotime($timestamp);
     $current_time    = time();
     $time_difference = $current_time - $time_ago;
