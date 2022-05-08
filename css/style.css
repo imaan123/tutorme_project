@@ -928,6 +928,48 @@ ul.btn li:last-child {
   width: 80%; float: left; font-style: italic;
 }
 
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav .navlink {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav .navlink:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav .navlink.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.postbox{
+  background-color: #eee;
+  margin: 10px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.postbox span{
+  font-size: 14px;
+  font-weight: normal;
+}
+.postbox h3{
+  text-align: center;
+  padding: 20px 0;
+  font-size: 25px;
+}
+
 input[type=text],input[type=password],input[type=email]{
   width: 450px;
   height: 45px;
